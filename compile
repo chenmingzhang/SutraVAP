@@ -1,2 +1,11 @@
 #!/bin/bash
-ifort -O3 main.f slap.f SinkareaRegular.f suterr.f init.f hypergeometric.f -o sutraO3
+ifort -O3 \
+      main.f \
+      slap.f \
+      SinkareaRegular.f \
+      suterr.f \
+      init.f \
+      hypergeometric.f \
+      basfunc.f \
+      tridiag.f \
+       -o sutraO3
