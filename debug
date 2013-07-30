@@ -1,0 +1,2 @@
+#!/bin/bash
+ifort -debug main.f slap.f SinkareaRegular.f suterr.f init.f hypergeometric.f -o sutraDebug
