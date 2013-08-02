@@ -6,6 +6,6 @@ ifort -O3 \
       suterr.f \
       init.f \
       hypergeometric.f \
-      basfunc.f \
       tridiag.f \
+      ft03.f90 \
        -o sutraO3
