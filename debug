@@ -1,11 +1,16 @@
 #!/bin/bash
 ifort -debug \
-       main.f \
+      main.f \
       slap.f \
       SinkareaRegular.f \
       suterr.f \
       init.f \
       hypergeometric.f \
-      basfunc.f \
       tridiag.f \
+      ft03.f90 \
+      vapor.f \
+      heat.f \
+      surfrsis.f \
+      unsat.f \
+      perfilm.f \
       -o sutraDebug 

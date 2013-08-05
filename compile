@@ -8,4 +8,9 @@ ifort -O3 \
       hypergeometric.f \
       tridiag.f \
       ft03.f90 \
+      vapor.f \
+      heat.f \
+      surfrsis.f \
+      unsat.f \
+      perfilm.f \
        -o sutraO3
