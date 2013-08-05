@@ -14532,8 +14532,11 @@ C    SEE RELATIVEK.SAGE FOR REFERENCE
       SWSTAR=1.D0/AAPVNN
       R E L K   =   DBLE (SQRT(SWSTAR)*                                  UNSAT........12400
      1                   (1.D0-(1.D0-SWSTAR**(1.D0/VNF))**(VNF))**2.D0)  UNSAT........12500
-
-C	IF (RELK.LT.1D-20) RELK=0.D0
+C         LET RELK EQUALS TO ZERO IS TO REDUCE A BUG IN *.ELE OUTPUT
+C         WHEN PHIC IS VERY SMALL, RELK MAY GO BELOW 1E-101, BUT THE 
+C         OUTPUT MAY NOT BE ABLE TO GENERATE IT AS 1-101 WHICH OTHER
+C         POSTPROCESSING PROGRAM DOES NOT UNDERSTAND
+          IF (RELK.LT.1.D-50) RELK=0.D0
 C - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  UNSAT........12600
 C                                                                        UNSAT........12700
 C*********************************************************************** UNSAT........12800
@@ -14585,8 +14588,6 @@ C         TERM1 IS NOT NEEDED SEE PAGE 170
           SE0=(PHICB/PHIC0)**DLAM
 C          TERM1=ZETA/DLAMP12/DLPHIC0
           TERM2=DLAM*DLAMP1*DLPHIC0
-
-
 C         GAMC=TERM1*SE/PHIC*(TERM2+SWRES*(-1+DLAMP12/SE-DLAM*DLAMP1*
 C     1(DLPHIC0-DLPHIC)))
 C         TERM1 IS CROSSED OUT IN ALL OF THE GAMAS
@@ -14601,15 +14602,23 @@ C         USE EFFECTIVE SATURATION AS MENISCUS PORES
           ENDIF
          ENDIF  !IUNSAT
         ENDIF   !PHIC AND PHICB
+C         LET RELK EQUALS TO ZERO IS TO REDUCE A BUG IN *.ELE OUTPUT
+C         WHEN PHIC IS VERY SMALL, RELK MAY GO BELOW 1E-101, BUT THE 
+C         OUTPUT MAY NOT BE ABLE TO GENERATE IT AS 1-101 WHICH OTHER
+C         POSTPROCESSING PROGRAM DOES NOT UNDERSTAND
+        IF (RELK.LT.1.D-50) RELK=0.D0
       ENDIF     !KREG
+
+
+
+
  1800 RETURN                                                             UNSAT........13600
 C                                                                        UNSAT........13700
       END                                                                UNSAT........13800
 
 
 
-C SUBROUTINE PERFILM IS TO CALCULATE THE SATURATED PERMEABILITY (M2) OF 
-C THE SOIL. IT IS A FUNCTION OF TEMPER
+C SUBROUTINE PERFILM IS TO CALCULATE THE PERMEABILITY (M2) DUE TO FILM
 C ONLY BUT AT THIS STAGE WE ASSUME IT IS ONLY A FUNCTION OF INITIAL TEMP
 C ERATURE SEE PAGE 165
       SUBROUTINE PERFILM (SPF,RPF,POR,TPT,PRES,SWG,KREG,MFT)
