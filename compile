@@ -13,4 +13,6 @@ ifort -O3 \
       surfrsis.f \
       unsat.f \
       perfilm.f \
+      bctime.f  \
+      others.f  \
        -o sutraO3

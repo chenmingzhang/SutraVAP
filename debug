@@ -13,4 +13,6 @@ ifort -debug \
       surfrsis.f \
       unsat.f \
       perfilm.f \
+      bctime.f  \
+      others.f  \
       -o sutraDebug 
