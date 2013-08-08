@@ -15,5 +15,5 @@ ifort -O3 \
       perfilm.f \
       bctime.f  \
       others.f  \
-      evaporation.f \
+      evaporation.f90 \
        -o sutraO3

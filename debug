@@ -15,5 +15,5 @@ ifort -debug \
       perfilm.f \
       bctime.f  \
       others.f  \
-      evaporation.f \
+      evaporation.f90 \
       -o sutraDebug 
