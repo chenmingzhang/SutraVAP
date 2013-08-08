@@ -10,9 +10,10 @@ ifort -debug \
       ft03.f90 \
       vapor.f \
       heat.f \
-      surfrsis.f \
+      surfrsis.f90 \
       unsat.f \
       perfilm.f \
       bctime.f  \
       others.f  \
+      evaporation.f \
       -o sutraDebug 
