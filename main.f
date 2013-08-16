@@ -6985,7 +6985,7 @@ C  [EC]   --  ECCENTRICITY OF THE ACTIVE PORE
 C  [ETR]  --  RESIDUAL EVAPORATION RATE [-] [ETR]
       ERRCOD = 'REA-INP-13L'                                            
       CALL READIF(K1, 0, INTFIL, ERRCOD)                         
-      READ(INTFIL,*,IOSTAT=INERR(1)) TAL,EC,ETR
+      READ(INTFIL,*,IOSTAT=INERR(1)) TAL,EC,ETR,PSIP
 C DATASET 13M PARAMETERS FOR FILM FLOW
       ERRCOD = 'REA-INP-13M'                                            
       CALL READIF(K1, 0, INTFIL, ERRCOD)                         
