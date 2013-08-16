@@ -5895,6 +5895,7 @@ C     3   OBSPTS)                                                         INDAT1
       USE LLDEF                                                          INDAT1........1200
       USE EXPINT                                                         INDAT1........1300
       USE SCHDEF                                                         INDAT1........1400
+      USE MOD_SURFR
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                INDAT1........1500
       PARAMETER (NCOLMX=9)                                               INDAT1........1600
       CHARACTER*10 ADSMOD,CDUM10                                         INDAT1........1700
@@ -5945,7 +5946,7 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      INDAT1
      1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        INDAT1........5800
      2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
      3   RC,SATM,STM,GVA,WMW,ZETA
-      COMMON /SURFR/ TAL,EC,ETR 
+!      COMMON /SURFR/ TAL,EC,ETR 
       COMMON /FILMFLOW/ CORF,AGR,SWM3,SWM4,PSICM,ASVL
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    INDAT1........5900
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       INDAT1........6000
@@ -11843,7 +11844,6 @@ C     8   IQSOPT,IQSOUT,IPBCT,IUBCT,BCSFL,BCSTR)                          SUTRA.
      1   NREG(NN),LREG(NE),IWK(NWI),IA(NDIMIA),JA(NDIMJA)                SUTRA.........5600
       TYPE (OBSDAT), DIMENSION (NOBSN) :: OBSPTS                         SUTRA.........5700
       DIMENSION KTYPE(2)                                                 SUTRA.........5800
-      DIMENSION IET(3),ISEEP(3),IPRE(3),IRD(2)
       DIMENSION IPN(NN),IUN(NN)
       DIMENSION WMA(NN),SMA(NN),POR1(NN),REK(NE),HAREA(NSOP),VAREA(NSOP)
      1,FAREA(NSOP),QLX(NE),QLY(NE),QXF(NE),QYF(NE),SPF(NE),RPF(NE)
@@ -12312,9 +12312,9 @@ C      CALCULATING THE WATER VAPOR FLOW AS WELL AS EVAPORATION RATE.
       IF (ITER.LT.10.AND.IBCT.NE.4.AND.IT.GT.1) 
      1   CALL BCTIME(IPBC,PBC,IUBC,UBC,QIN,UIN,QUIN,IQSOP,IQSOU, 
      1   IPBCT,IUBCT,IQSOPT,IQSOUT,X,Y,Z,IBCPBC,IBCUBC,IBCSOP,IBCSOU,
-     2   PITER,UITER,GNUP1,GNUU1,IET,ISEEP,IPRE,IRD,RCIT,SW,VOL1,POR,SM,
+     2   PITER,UITER,GNUP1,GNUU1,RCIT,SW,VOL1,POR,SM,
      3   NDPT,NREF,WMA,HAREA,VAREA,DFR,PWFR,PCFR,POR1,TPT,ACET,QVYN
-     4    ,QVX,QVY,TPT1,NREG)
+     4    ,QVX,QVY,TPT1,NREG,YY)
 276   IF ((ITER.EQ.1).AND.(K9.NE.-1))                                    SUTRA........43800
      1   CALL BCSTEP(SETBCS,IPBC,PBC,IUBC,UBC,QIN,UIN,QUIN,IQSOP,IQSOU,  SUTRA........43900
      2   IPBCT1,IUBCT1,IQSOPT1,IQSOUT1,GNUP1,GNUU1,                      SUTRA........44000
@@ -12474,8 +12474,6 @@ C - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  SUTRA..
 C                                                                        SUTRA........55800
  7500 CONTINUE                                                           SUTRA........55900
       IF(ISTOP.NE.-1.AND.IT.EQ.ITMAX) ISTOP=1                            SUTRA........56000
-C.....IRD(1) STORES THE LAST ITERATION VALUE AND OUTPUT TO ETINFO FILE
-      IRD(1)=ITER
       IF (MOD(IT,NCOLPR).EQ.0.OR.IT.EQ.1) THEN
           CALL QVOPT(QVX,QVY)
       ENDIF

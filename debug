@@ -1,5 +1,6 @@
 #!/bin/bash
 ifort -debug \
+      mods.f90 \
       main.f \
       slap.f \
       SinkareaRegular.f \

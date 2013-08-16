@@ -16,4 +16,5 @@ ifort -O3 \
       bctime.f  \
       others.f  \
       evaporation.f90 \
+      mods.f90 \
        -o sutraO3
