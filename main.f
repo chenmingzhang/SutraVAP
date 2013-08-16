@@ -120,6 +120,7 @@ C                                                                        SUTRA_M
       USE BCSDEF                                                         SUTRA_MAIN...12000
       USE FINDEF                                                         SUTRA_MAIN...12100
       USE LLDEF                                                          SUTRA_MAIN...12200
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                SUTRA_MAIN...12300
       PARAMETER (NCOLMX=9)                                               SUTRA_MAIN...12400
 C                                                                        SUTRA_MAIN...12500
@@ -178,10 +179,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      SUTRA_
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            SUTRA_MAIN...17700
       COMMON /MODSOR/ ADSMOD                                             SUTRA_MAIN...17800
       COMMON /OBS/ NOBSN,NTOBS,NOBCYC,NOBLIN,NFLOMX                      SUTRA_MAIN...17900
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      SUTRA_MAIN...18000
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        SUTRA_MAIN...18100
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT1/ ONCEK5, ONCEK6, ONCEK7, ONCEK8                       SUTRA_MAIN...18200
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   SUTRA_MAIN...18300
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    SUTRA_MAIN...18400
@@ -1130,16 +1127,13 @@ C ***  TO CALCULATE VALUES OF EQUILIBRIUM SORPTION PARAMETERS FOR        ADSORB.
 C ***  LINEAR, FREUNDLICH, AND LANGMUIR MODELS.                          ADSORB.........500
 C                                                                        ADSORB.........600
       SUBROUTINE ADSORB(CS1,CS2,CS3,SL,SR,U)                             ADSORB.........700
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                ADSORB.........800
       CHARACTER*10 ADSMOD                                                ADSORB.........900
       DIMENSION CS1(NN),CS2(NN),CS3(NN),SL(NN),SR(NN),U(NN)              ADSORB........1000
       COMMON /DIMS/ NN,NE,NIN,NBI,NCBI,NB,NBHALF,NPBC,NUBC,              ADSORB........1100
      1   NSOP,NSOU,NBCN,NCIDB                                            ADSORB........1200
       COMMON /MODSOR/ ADSMOD                                             ADSORB........1300
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      ADSORB........1400
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        ADSORB........1500
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /ET/ QET,UET,PET,UVM,NGT,ITE,TMA,TMI,ALF,RS,RH,AP,BP,U2,
      1   TSD,SCF
 C                                                                        ADSORB........1600
@@ -1285,6 +1279,7 @@ C                                                                        BASIS2.
      4   GXSI,GETA,RCIT,RCITM1,RGXG,RGYG,LREG,POR1,QXG,QYG,TPT,QXFG,
      5   QYFG,SPFG,RPFG) 
 C     4   GXSI,GETA,RCIT,RCITM1,RGXG,RGYG,LREG)                           BASIS2........1500
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                BASIS2........1600
       DOUBLE PRECISION XLOC,YLOC                                         BASIS2........1700
       DIMENSION IN(NIN),X(NN),Y(NN),UITER(NN),PITER(NN),PVEL(NN),        BASIS2........1800
@@ -1302,10 +1297,6 @@ C     4   GXSI,GETA,RCIT,RCITM1,RGXG,RGYG,LREG)                           BASIS2
 C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      BASIS2........2800
       COMMON /DIMS/ NN,NE,NIN,NBI,NCBI,NB,NBHALF,NPBC,NUBC,              BASIS2........2900
      1   NSOP,NSOU,NBCN,NCIDB                                            BASIS2........3000
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      BASIS2........3100
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        BASIS2........3200
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /FILMFLOW/ CORF,AGR,SWM3,SWM4,PSICM,ASVL
       DATA XIIX/-1.D0,+1.D0,+1.D0,-1.D0/,                                BASIS2........3300
      1     YIIY/-1.D0,-1.D0,+1.D0,+1.D0/                                 BASIS2........3400
@@ -1566,6 +1557,7 @@ C                                                                        BASIS3.
      4   CJ11,CJ12,CJ13,CJ21,CJ22,CJ23,CJ31,CJ32,CJ33,                   BASIS3........1500
      4   GXSI,GETA,GZET,RCIT,RCITM1,RGXG,RGYG,RGZG,LREG,POR1)
 C     4   GXSI,GETA,GZET,RCIT,RCITM1,RGXG,RGYG,RGZG,LREG)                 BASIS3........1600
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                BASIS3........1700
       DOUBLE PRECISION XLOC,YLOC,ZLOC                                    BASIS3........1800
       DIMENSION IN(NIN),X(NN),Y(NN),Z(NN),UITER(NN),PITER(NN),PVEL(NN),  BASIS3........1900
@@ -1586,10 +1578,6 @@ C     4   GXSI,GETA,GZET,RCIT,RCITM1,RGXG,RGYG,RGZG,LREG)                 BASIS3
 C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      BASIS3........3200
       COMMON /DIMS/ NN,NE,NIN,NBI,NCBI,NB,NBHALF,NPBC,NUBC,              BASIS3........3300
      1   NSOP,NSOU,NBCN,NCIDB                                            BASIS3........3400
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      BASIS3........3500
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        BASIS3........3600
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       DATA XIIX/-1.D0,+1.D0,+1.D0,-1.D0,-1.D0,+1.D0,+1.D0,-1.D0/         BASIS3........3700
       DATA YIIY/-1.D0,-1.D0,+1.D0,+1.D0,-1.D0,-1.D0,+1.D0,+1.D0/         BASIS3........3800
       DATA ZIIZ/-1.D0,-1.D0,-1.D0,-1.D0,+1.D0,+1.D0,+1.D0,+1.D0/         BASIS3........3900
@@ -1864,6 +1852,7 @@ C ***  TRANSPORT MATRIX EQUATIONS.                                       BC.....
 C                                                                        BC.............700
       SUBROUTINE BC(ML,PMAT,PVEC,UMAT,UVEC,IPBC,PBC,IUBC,UBC,QPLITR,JA,  BC.............800
      1   GNUP1,GNUU1)                                                    BC.............900
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                BC............1000
       DIMENSION PMAT(NELT,NCBI),PVEC(NNVEC),UMAT(NELT,NCBI),UVEC(NNVEC), BC............1100
      1   IPBC(NBCN),PBC(NBCN),IUBC(NBCN),UBC(NBCN),QPLITR(NBCN),         BC............1200
@@ -1878,10 +1867,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      BC....
      1   NSOP,NSOU,NBCN,NCIDB                                            BC............2000
       COMMON /DIMX/ NWI,NWF,NWL,NELT,NNNX,NEX,N48                        BC............2100
       COMMON /DIMX2/ NELTA,NNVEC,NDIMIA,NDIMJA                           BC............2200
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      BC............2300
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        BC............2400
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           BC............2500
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       BC............2600
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      BC............2700
@@ -2651,6 +2636,7 @@ C                                                                        BUDGET.
      2   IQSOU,UBC,IUBC,CS1,CS2,CS3,SL,SR,NREG,GNUP1,GNUU1,              BUDGET.........900
      3   IBCSOP,IBCSOU,SM,SM1)
 c     3   IBCSOP,IBCSOU)                                                  BUDGET........1000
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                BUDGET........1100
       CHARACTER*10 ADSMOD                                                BUDGET........1200
       CHARACTER*13 ULABL(2)                                              BUDGET........1300
@@ -2677,10 +2663,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      BUDGET
      1   K10,K11,K12,K13                                                 BUDGET........3000
       COMMON /ITERAT/ RPM,RPMAX,RUM,RUMAX,ITER,ITRMAX,IPWORS,IUWORS      BUDGET........3100
       COMMON /MODSOR/ ADSMOD                                             BUDGET........3200
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      BUDGET........3300
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        BUDGET........3400
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       BUDGET........3500
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      BUDGET........3600
       DATA ULABL(1)/'CONCENTRATION'/,ULABL(2)/' TEMPERATURE '/           BUDGET........3700
@@ -3523,6 +3505,7 @@ C                                                                        ELEMN2.
 C     2   VMAG,VANG,VOL,PMAT,PVEC,UMAT,UVEC,GXSI,GETA,PVEL,LREG,IA,JA)    ELEMN2........1600
      2   VMAG,VANG,VOL,PMAT,PVEC,UMAT,UVEC,GXSI,GETA,PVEL,LREG,IA,JA
      3   ,POR1,REK,QLX,QLY,TPT,QXF,QYF,SPF,RPF)
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                ELEMN2........1700
       PARAMETER (NCOLMX=9)                                               ELEMN2........1800
       CHARACTER*80 ERRCOD,CHERR(10),UNAME,FNAME(0:13)                    ELEMN2........1900
@@ -3567,10 +3550,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      ELEMN2
       COMMON /JCOLS/ NCOLPR,LCOLPR,NCOLS5,NCOLS6,J5COL,J6COL             ELEMN2........5100
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                ELEMN2........5200
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            ELEMN2........5300
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      ELEMN2........5400
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        ELEMN2........5500
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           ELEMN2........5600
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       ELEMN2........5700
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      ELEMN2........5800
@@ -3902,6 +3881,7 @@ C                                                                        ELEMN3.
      3   PANGL1,PANGL2,PANGL3,VMAG,VANG1,VANG2,VOL,PMAT,PVEC,            ELEMN3........1700
      4   UMAT,UVEC,GXSI,GETA,GZET,PVEL,LREG,IA,JA,POR1,REK) 
 C     4   UMAT,UVEC,GXSI,GETA,GZET,PVEL,LREG,IA,JA)                       ELEMN3........1800
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                ELEMN3........1900
       PARAMETER (NCOLMX=9)                                               ELEMN3........2000
       CHARACTER*80 ERRCOD,CHERR(10),UNAME,FNAME(0:13)                    ELEMN3........2100
@@ -3946,10 +3926,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      ELEMN3
       COMMON /JCOLS/ NCOLPR, LCOLPR, NCOLS5, NCOLS6, J5COL, J6COL        ELEMN3........5800
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                ELEMN3........5900
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            ELEMN3........6000
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      ELEMN3........6100
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        ELEMN3........6200
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           ELEMN3........6300
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       ELEMN3........6400
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      ELEMN3........6500
@@ -5141,6 +5117,7 @@ C ***  TO INPUT, OUTPUT, AND ORGANIZE A PORTION OF THE INP FILE          INDAT0.
 C ***  INPUT DATA (DATASETS 5 THROUGH 7)                                 INDAT0.........500
 C                                                                        INDAT0.........600
       SUBROUTINE INDAT0()                                                INDAT0.........700
+      USE M_PARAMS
       USE EXPINT                                                         INDAT0.........800
       USE LLDEF                                                          INDAT0.........900
       USE SCHDEF                                                         INDAT0........1000
@@ -5178,10 +5155,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      INDAT0
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            INDAT0........4100
       COMMON /MODSOR/ ADSMOD                                             INDAT0........4200
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    INDAT0........4300
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      INDAT0........4400
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        INDAT0........4500
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /SOLVC/ SOLWRD,SOLNAM                                       INDAT0........4600
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           INDAT0........4700
       COMMON /SOLVN/ NSLVRS                                              INDAT0........4800
@@ -5896,6 +5869,7 @@ C     3   OBSPTS)                                                         INDAT1
       USE EXPINT                                                         INDAT1........1300
       USE SCHDEF                                                         INDAT1........1400
       USE MOD_SURFR
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                INDAT1........1500
       PARAMETER (NCOLMX=9)                                               INDAT1........1600
       CHARACTER*10 ADSMOD,CDUM10                                         INDAT1........1700
@@ -5942,10 +5916,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      INDAT1
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            INDAT1........5400
       COMMON /MODSOR/ ADSMOD                                             INDAT1........5500
       COMMON /OBS/ NOBSN,NTOBS,NOBCYC,NOBLIN,NFLOMX                      INDAT1........5600
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      INDAT1........5700
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        INDAT1........5800
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
 !      COMMON /SURFR/ TAL,EC,ETR 
       COMMON /FILMFLOW/ CORF,AGR,SWM3,SWM4,PSICM,ASVL
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    INDAT1........5900
@@ -7184,6 +7154,7 @@ C                                                                        INDAT2.
 C     2   QUIN,IBCPBC,IBCUBC,IBCSOP,IBCSOU,IIDPBC,IIDUBC,IIDSOP,IIDSOU)   INDAT2........1000
       USE ALLARR, ONLY : CIDBCS                                          INDAT2........1100
       USE EXPINT                                                         INDAT2........1200
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                INDAT2........1300
       CHARACTER*10 CPUNI,CUUNI                                           INDAT2........1400
       CHARACTER INTFIL*1000                                              INDAT2........1500
@@ -7208,10 +7179,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      INDAT2
       COMMON /FNAMES/ UNAME,FNAME                                        INDAT2........3200
       COMMON /FUNITS/ K00,K0,K1,K2,K3,K4,K5,K6,K7,K8,K9,                 INDAT2........3300
      1   K10,K11,K12,K13                                                 INDAT2........3400
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      INDAT2........3500
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        INDAT2........3600
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       INDAT2........3700
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      INDAT2........3800
       COMMON /VER/ VERNUM, VERNIN                                        INDAT2........3900
@@ -7688,6 +7655,7 @@ C                                                                        NODAL..
       SUBROUTINE NODAL(ML,VOL,PMAT,PVEC,UMAT,UVEC,PITER,UITER,PM1,UM1,   NODAL.........1000
      1   UM2,POR,QIN,UIN,QUIN,QINITR,CS1,CS2,CS3,SL,SR,SW,DSWDP,RHO,SOP, NODAL.........1100
      1   NREG,JA)                                                        NODAL.........1200
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                NODAL.........1300
       DIMENSION VOL(NN),PMAT(NELT,NCBI),PVEC(NNVEC),UMAT(NELT,NCBI),     NODAL.........1400
      1   UVEC(NNVEC)                                                     NODAL.........1500
@@ -7705,10 +7673,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      NODAL.
      1   NSOP,NSOU,NBCN,NCIDB                                            NODAL.........2600
       COMMON /DIMX/ NWI,NWF,NWL,NELT,NNNX,NEX,N48                        NODAL.........2700
       COMMON /DIMX2/ NELTA,NNVEC,NDIMIA,NDIMJA                           NODAL.........2800
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      NODAL.........2900
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        NODAL.........3000
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           NODAL.........3100
       COMMON /TIMES/ DELT,TSEC,TMIN,THOUR,TDAY,TWEEK,TMONTH,TYEAR,       NODAL.........3200
      1   TMAX,DELTP,DELTU,DLTPM1,DLTUM1,IT,ITBCS,ITRST,ITMAX,TSTART      NODAL.........3300
@@ -7802,7 +7766,7 @@ C                                                                        OUTBCOF
       SUBROUTINE OUTBCOF(QIN,IQSOP,UVEC,UIN,QINITR,IBCSOP,TITLE1,TITLE2, OUTBCOF........800
      1   IIDSOP,X,Y,Z,DFR,PWFR,PCFR)
 C     1   IIDSOP)                                                         OUTBCOF........900
-
+      USE M_PARAMS
       USE ALLARR, ONLY : CIDBCS                                          OUTBCOF.......1000
       USE EXPINT                                                         OUTBCOF.......1100
       USE SCHDEF                                                         OUTBCOF.......1200
@@ -7840,10 +7804,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      OUTBCO
       COMMON /KPRBCS/ KINACT                                             OUTBCOF.......4200
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                OUTBCOF.......4300
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            OUTBCOF.......4400
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      OUTBCOF.......4500
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        OUTBCOF.......4600
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   OUTBCOF.......4700
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    OUTBCOF.......4800
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           OUTBCOF.......4900
@@ -8064,6 +8024,7 @@ C     1   TITLE1,TITLE2,IIDPBC)                                           OUTBCO
       USE ALLARR, ONLY : CIDBCS                                          OUTBCOP.......1000
       USE EXPINT                                                         OUTBCOP.......1100
       USE SCHDEF                                                         OUTBCOP.......1200
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                OUTBCOP.......1300
       PARAMETER (NCOLMX=9)                                               OUTBCOP.......1400
       CHARACTER*1  TITLE1(80),TITLE2(80)                                 OUTBCOP.......1500
@@ -8100,10 +8061,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      OUTBCO
       COMMON /KPRBCS/ KINACT                                             OUTBCOP.......4400
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                OUTBCOP.......4500
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            OUTBCOP.......4600
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      OUTBCOP.......4700
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        OUTBCOP.......4800
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   OUTBCOP.......4900
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    OUTBCOP.......5000
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           OUTBCOP.......5100
@@ -8326,6 +8283,7 @@ C                                                                        OUTBCOS
       USE ALLARR, ONLY : CIDBCS                                          OUTBCOS........900
       USE EXPINT                                                         OUTBCOS.......1000
       USE SCHDEF                                                         OUTBCOS.......1100
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                OUTBCOS.......1200
       PARAMETER (NCOLMX=9)                                               OUTBCOS.......1300
       CHARACTER*1  TITLE1(80),TITLE2(80)                                 OUTBCOS.......1400
@@ -8359,10 +8317,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      OUTBCO
       COMMON /KPRBCS/ KINACT                                             OUTBCOS.......4100
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                OUTBCOS.......4200
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            OUTBCOS.......4300
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      OUTBCOS.......4400
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        OUTBCOS.......4500
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   OUTBCOS.......4600
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    OUTBCOS.......4700
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           OUTBCOS.......4800
@@ -8564,6 +8518,7 @@ C                                                                        OUTBCOU
       USE ALLARR, ONLY : CIDBCS                                          OUTBCOU.......1000
       USE EXPINT                                                         OUTBCOU.......1100
       USE SCHDEF                                                         OUTBCOU.......1200
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                OUTBCOU.......1300
       PARAMETER (NCOLMX=9)                                               OUTBCOU.......1400
       CHARACTER*1  TITLE1(80),TITLE2(80)                                 OUTBCOU.......1500
@@ -8598,10 +8553,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      OUTBCO
       COMMON /KPRBCS/ KINACT                                             OUTBCOU.......4300
       COMMON /KPRINT/ KNODAL,KELMNT,KINCID,KPLOTP,KPLOTU,                OUTBCOU.......4400
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            OUTBCOU.......4500
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      OUTBCOU.......4600
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        OUTBCOU.......4700
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   OUTBCOU.......4800
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    OUTBCOU.......4900
       COMMON /SOLVI/ KSOLVP,KSOLVU,NN1,NN2,NN3                           OUTBCOU.......5000
@@ -11803,6 +11754,7 @@ C     8   IQSOPT,IQSOUT,IPBCT,IUBCT,BCSFL,BCSTR)                          SUTRA.
       USE LLDEF                                                          SUTRA.........1800
       USE EXPINT                                                         SUTRA.........1900
       USE SCHDEF                                                         SUTRA.........2000
+      USE M_PARAMS
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)                                SUTRA.........2100
       PARAMETER (NCOLMX=9)                                               SUTRA.........2200
       CHARACTER*8 VERNUM, VERNIN                                         SUTRA.........2300
@@ -11878,10 +11830,6 @@ C     2   ISTORE,NOUMAT,IUNSAT,KTYPE                                      SUTRA.
      1   KPANDS,KVEL,KCORT,KBUDG,KSCRN,KPAUSE                            SUTRA.........7700
       COMMON /MODSOR/ ADSMOD                                             SUTRA.........7800
       COMMON /OBS/ NOBSN,NTOBS,NOBCYC,NOBLIN,NFLOMX                      SUTRA.........7900
-      COMMON /PARAMS/ COMPFL,COMPMA,DRWDU,CW,CS,RHOS,SIGMAW,SIGMAS,      SUTRA.........8000
-     1   RHOW0,URHOW0,VISC0,PRODF1,PRODS1,PRODF0,PRODS0,CHI1,CHI2        SUTRA.........8100
-     2   ,DVIDU,RELPW,PERMVAC,SURFT,PI,ELECTRC,BOTZC,CL,CA,DMAIR,
-     3   RC,SATM,STM,GVA,WMW,ZETA
       COMMON /PLT1/ ONCEK5, ONCEK6, ONCEK7, ONCEK8                       SUTRA.........8200
       COMMON /PLT2/ ONCEK10, ONCEK11, ONCEK12, ONCEK13                   SUTRA.........8300
       COMMON /SCH/ NSCH,ISCHTS,NSCHAU                                    SUTRA.........8400
@@ -12003,7 +11951,7 @@ C     TSEC=TSTART                                                        SUTRA..
       TMONTH=TDAY/30.4375D0                                              SUTRA........19500
       TYEAR=TDAY/365.25D0                                                SUTRA........19600
 C.....SET INITIAL CONSTANTS
-      CALL INITCONS()
+!      CALL INITCONS()
 C.....WHEN HYDRAULIC CONDUCTIVITY DUE TO FILM FLOW IS CONSIDERED BY 
 C          LEBEAU AND CONRAD (2010) EQUATION, SATURATION AT LARGE 
 C          CAPILLARY PRESSURE HEAD HAS TO BE CALCULATED WHICH DENOTES
