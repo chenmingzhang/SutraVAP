@@ -134,6 +134,7 @@ C      DSIDP=-SWRES/LOG(-PSIC0/9.8D3)/PRES
 C      D S W D P   =   DBLE (DNUM/DNOM)                                   UNSAT........10300
 C      HERE DSWDP=DSW/DPSIC * DPSIC/DP AND DPSIC/DP=-/9800
 	DSWDP = ( -DSIDP+DSIDP/AAPVNN-DNUM/DNOM)/9.8D3
+        IF (DSWDP.LT.1D-50) DSWDP =0.D0
 C - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  UNSAT........10400
       GOTO 1800                                                          UNSAT........10500
 C*********************************************************************** UNSAT........10600
@@ -206,6 +207,7 @@ C       REQUIRED
          IF (IUNSAT.EQ.1)THEN
           DSIDP=-SWRES/LOG(PSIC0)/PSIC
           DSWDP=(-DSIDP+DSIDP*SE+DLAM*SWRMS1*SE/PSIC)/9.8D3
+          IF (DSWDP.LT.1.D-50) DSWDP=0.D0
 C         WHEN IUNSAT=2 RELATIVE HYDRAULIC CONDUCTIVITY IS REQUIRED. 
 C         SEE MUALEM PAPER, PAGE 153
 C         AND PAGE 143 OF THE BLUEBOOK FOR REFERENCE
