@@ -1,0 +1,21 @@
+#!/bin/bash
+# you may need to run this twice to get a binary file
+gfortran -O3 \
+      main.f \
+      slap.f \
+      SinkareaRegular.f \
+      suterr.f \
+      init.f \
+      hypergeometric.f \
+      tridiag.f \
+      ft03.f90 \
+      vapor.f \
+      heat.f \
+      surfrsis.f90 \
+      unsat.f \
+      perfilm.f \
+      bctime.f  \
+      others.f  \
+      evaporation.f90 \
+      mods.f90 \
+       -o sutraO3_gfortran
