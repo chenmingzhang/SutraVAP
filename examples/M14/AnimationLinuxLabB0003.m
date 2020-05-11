@@ -64,7 +64,7 @@ if f2(6)~=0
   mov.FrameRate = 5;mov.Quality=qt;
   open(mov);
   
-  for j=2:50:f2(1)   %:f2(6):f2(1)
+  for j=2:10:f2(1)   %:f2(6):f2(1)
    %% ---plot temperature-----
     subplot('Position',[0.04 0.62 0.12 0.35])
     %plot(tlab(2,:,1),tlab(1,:,1),'rd','MarkerSize',cz);hold on;
