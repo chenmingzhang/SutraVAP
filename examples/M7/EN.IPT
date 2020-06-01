@@ -28,10 +28,10 @@
 [FNAME]  [DI]      [FILENAME1]          [FILENAME2]         [FILENAME3]
 7C90MM     2D        #       #         #          #               #
 [SWELE]  [SWNOD]   [SWBCOP]    [SWBCOF]   [INTERP]     [SWANIMA]  [MABA]    [ET]   [EXPE]   [EFOPT]
-  301     302        0           301       0              10          0     30000      0        0.06
+  801     802        0           801       0              10          0     80000      0        0.06
 [NN]    [NE]  [NPBC]  [NSOP]   [NX]  [NY]  [NTE]  [NTN]  [NTP]  
 63       40    0       63       20    2      30     31     30      
 [ZEL]    [ZEE]  [SCALT]   [INTERVAL]
-5.0E-2    0.0    60.       100
+5.0E-2    0.0    20.       100
 [MXC]      [MNC]    [MXS]   [MNS]   [MXM]  [MNM]  [MXP]  [MNP]     [MXT]   [MNT]   [MXV]    [MNV]   [MXK]  [MNK]   [MXD]  [MXE]  
 0.3        -0.02    1       -0.1    0.401   0.39   50     20        0.1    -5000    1     -1        1.1    1E-17     20     20

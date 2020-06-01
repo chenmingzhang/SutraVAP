@@ -60,11 +60,11 @@ C*********************************************************************** UNSAT..
 C*********************************************************************** UNSAT.........5500
 C                                                                        UNSAT.........5600
 C     SET PARAMETERS FOR CURRENT REGION, KREG                            UNSAT.........5700
-      IF(KREG.EQ.0)THEN                                                   UNSAT.........5800
+      IF(KREG.EQ.1)THEN                                                   UNSAT.........5800
       SWRES=SWRES1                                                       UNSAT.........5900
       AA=AA1                                                             UNSAT.........6000
       VN=VN1                                                             UNSAT.........6100
-      ELSEIF(KREG.EQ.1)THEN                                                           
+      ELSEIF(KREG.EQ.2)THEN                                                           
       SWRES=SWRES2                                                       UNSAT.........6300
       AA=AA2                                                             UNSAT.........6400
       VN=VN2                                                             UNSAT.........6500
@@ -84,7 +84,7 @@ C  (POSITIVE)
       SWRMS1=1.D0-SI
 
 C  USING VAN GENUCHTEN WATER RETENTION CURVE WITH FAYER EXTENTION
-      IF (KREG.EQ.0.OR.KREG.EQ.1)THEN
+      IF (KREG.EQ.1.OR.KREG.EQ.2)THEN
 C                                                                        UNSAT.........6700
 C                                                                        UNSAT.........6800
 C*********************************************************************** UNSAT.........6900
@@ -170,7 +170,7 @@ CBELOW RESIDUAL IS
 C JUST FILM WATER THAT IS BOUNDED BY VAN DER WAAL FORCE
 C    SEE RELATIVEK.SAGE FOR REFERENCE
       SWSTAR=1.D0/AAPVNN
-      R E L K   =   DBLE (SQRT(SWSTAR)*                                  UNSAT........12400
+      RELK   =   DBLE (SQRT(SWSTAR)*                                     UNSAT........12400
      1                   (1.D0-(1.D0-SWSTAR**(1.D0/VNF))**(VNF))**2.D0)  UNSAT........12500
 C         LET RELK EQUALS TO ZERO IS TO REDUCE A BUG IN *.ELE OUTPUT
 C         WHEN PSIC IS VERY SMALL, RELK MAY GO BELOW 1E-101, BUT THE 
