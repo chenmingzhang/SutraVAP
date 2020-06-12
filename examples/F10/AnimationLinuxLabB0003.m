@@ -9,7 +9,7 @@ fl=15; % label font size
 
 %% coordinate transformation for accumulative evaporation
 % (T)ranslation for (T)ime (C)oordinate (day)
-ttc=0;
+ttc=0.3;
 % find out the the base accumulative evaporation rate before new zero time
 i=1;
 while (taetlab(i)-taetlab(1))<ttc
@@ -26,11 +26,9 @@ st1cm=zeros(f2(2)-1,1);
 st9cm=zeros(f2(2)-1,1);
 st14cm=zeros(f2(2)-1,1);
 st13cm=zeros(f2(2)-1,1);
-sta12cm=zeros(f2(2)-1,1);
 for i=1:f2(2)-1
   st1cm(i)=a1(5,(2*(f3(5)+1)),i);
   st9cm(i)=a1(5,(2*(f3(5)+1)-9),i);
-  sta12cm(i)=a1(5,(2*(f3(5)+1)-12),i);
   st13cm(i)=mean(a1(5,(2*(f3(5)+1))-2:(2*(f3(5)+1)),i));
   st14cm(i)=mean(a1(5,(2*(f3(5)+1))-3:(2*(f3(5)+1)),i));
 end
@@ -44,12 +42,10 @@ tt8cm=zeros(f2(2)-1,1);
 tt1cm=zeros(f2(2)-1,1);
 tt11cm=zeros(f2(2)-1,1);
 tt5cm=zeros(f2(2)-1,1);
-tt4cm=zeros(f2(2)-1,1);
 
 for i=1:f2(2)-1
-  tt1cm(i)=a1(13,(2*(f3(5)+1)),i);
-  tt3cm(i)=a1(13,(2*(f3(5)+1)-2),i);
-  tt4cm(i)=a1(13,(2*(f3(5)+1)-3),i);
+  tt1cm(i)=a1(13,(2*(f3(5)+1)-1),i);
+  tt3cm(i)=a1(13,(2*(f3(5)+1)-3),i);
   tt5cm(i)=a1(13,(2*(f3(5)+1)-5),i);
   tt8cm(i)=a1(13,(2*(f3(5)+1)-8),i);
   tt11cm(i)=a1(13,(2*(f3(5)+1)-11),i);
@@ -68,13 +64,14 @@ if f2(6)~=0
   mov.FrameRate = 5;mov.Quality=qt;
   open(mov);
   
-  for j=2:30:f2(1)   %:f2(6):f2(1)
+  for j=2:50:f2(1)   %:f2(6):f2(1)
    %% ---plot temperature-----
     subplot('Position',[0.04 0.62 0.12 0.35])
+    %plot(tlab(2,:,1),tlab(1,:,1),'rd','MarkerSize',cz);hold on;
+    %plot(tlab(2,:,2),tlab(1,:,2),'go','MarkerSize',cz);hold on
+    %plot(tlab(2,:,3),tlab(1,:,3),'ks','MarkerSize',cz);hold on
     plot(a1(13,(f3(5)+2):(2*(f3(5)+1)),j),a1(2,(f3(5)+2):(2*(f3(5)+1)),j),'LineWidth',lw);hold on
-    
-    plot([mean(tlab(1:ndt(3),3)),mean(tlab(1:ndt(2),2)),mean(tlab(1:ndt(1),1))],[0.12,0.17,0.2],'or','markersize',10,'markerface','r');hold off
-    
+    plot([mean(tlab(1:ndt(3),3)),mean(tlab(1:ndt(1),1)),mean(tlab(1:ndt(2),2))],[0.12,0.17,0.2],'or','markersize',10,'markerface','r');hold off
     axis([f5(8) f5(7) a1(2,(f3(5)+2),j) a1(2,(2*(f3(5)+1)),j)])
     ylabel('Depth (m)','FontSize',fz,'FontWeight','bold')
     xlabel('Temperature (\circC)','FontSize',fz,'FontWeight','bold')
@@ -101,7 +98,7 @@ if f2(6)~=0
     
     %% ----Vertical flux output-------
     subplot('Position',[0.46 0.62 0.12 0.35])
-    plot(b1(4,(f3(5)+1):(2*f3(5)),j)*sce,xye(2,(f3(5)+1):(2*f3(5))),'r',qvy1(1,:,j)*sce,fliplr(xye(2,(f3(5)+1):(2*f3(5)))),'b','LineWidth',lw) 
+    plot(b1(4,(f3(5)+1):(2*f3(5)),j)*sce,xye(2,(f3(5)+1):2*f3(5)),'r',qvy1(1,:,j)*sce,fliplr(xye(2,(f3(5)+1):(2*f3(5)))),'b','LineWidth',lw) 
     xlabel('Vertical Flux (mm/day)','FontSize',fz,'FontWeight','bold')
     hleg1 = legend('liquid water','water vapor','Location','SouthEast');
     set(hleg1, 'Box', 'off','FontSize',fz)
@@ -131,7 +128,7 @@ plot(tetlab(:,2)-tetlab(1,2),etlab(:,2)*sce,'g');hold off
      ax1 = gca;
     set(ax1,'FontSize',fl,'FontWeight','bold')
     
-axis([0 10 0 10])
+axis([0 6 0 15])
 %% ----accumulative evaporation rate ------------
 subplot('Position',[0.04 0.05 0.45 0.23])
 plot(aet1(1,1:j)+ttc,aet1(2,1:j),'b','LineWidth',lw);hold on  %Calculated evaporation
@@ -142,7 +139,7 @@ hleg1 = legend('Calculated','Original data','Location','NorthEast');
 set(hleg1, 'Box', 'off','FontSize',fz)
 ax1 = gca;
 set(ax1,'FontSize',fl,'FontWeight','bold')
-axis([0 10 0 40])
+axis([0 6 0 40])
 %% -----Saturation over time --------------------
 subplot('Position',[0.55 0.33 0.45 0.23])
 plot(tslab(:,1)-tslab(1,1),slab(:,1),'r');hold on
@@ -150,13 +147,12 @@ plot(tslab(:,2)-tslab(1,2),slab(:,2),'g');hold on
 plot(ta(2,1:j)+ttc,st1cm(1:j),'r','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,st13cm(1:j),'b','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,st14cm(1:j),'k','LineWidth',lw);hold on
-plot(ta(2,1:j)+ttc,sta12cm(1:j),'g:','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,st9cm(1:j),'g','LineWidth',lw);hold off
 xlabel('Time (day)','FontSize',fz,'FontWeight','bold')
 ylabel('Saturation','FontSize',fz,'FontWeight','bold')
 ax1 = gca;
 set(ax1,'FontSize',fl,'FontWeight','bold')
-axis([0 10 0 1.1])
+axis([0 6 0 1.1])
 %% -----Temperature over time --------------------
 subplot('position',[0.55 0.05 0.45 0.23])
 plot(ttlab(1:ndt(1),1)-ttlab(1,1),tlab(1:ndt(1),1),'r');hold on
@@ -166,10 +162,8 @@ plot(ttlab(1:ndt(4),4)-ttlab(1,4),tlab(1:ndt(4),4),'c');hold on
 
 plot(ta(2,1:j)+ttc,tt1cm(1:j),'r','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,tt3cm(1:j),'g','LineWidth',lw);hold on
-plot(ta(2,1:j)+ttc,tt4cm(1:j),'g','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,tt5cm(1:j),'b','LineWidth',lw);hold on
 plot(ta(2,1:j)+ttc,tt8cm(1:j),'c','LineWidth',lw);hold on
-
 plot(ta(2,1:j)+ttc,tt11cm(1:j),'k','LineWidth',lw);hold off
 
 xlabel('Time (day)','FontSize',fz,'FontWeight','bold')
@@ -203,8 +197,6 @@ set(ax1,'FontSize',fl,'FontWeight','bold')
     writeVideo(mov,F);% add it as the next frame of the movie
   end
 close(mov);
-clear F mov
-save('Data.mat') 
 saveas(h,'a','fig')
 end
 
@@ -243,5 +235,8 @@ if f2(7)~=0
    fclose(fn);
 
 end
+
 %% FINISH
+clear mov F
+save('Data.mat') 
 fprintf(1,'JOB COMPLETE \n');
