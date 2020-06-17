@@ -169,7 +169,7 @@ C MOVEMENT THAT FORMS THE MENISCI IN BETWEEN THE PORE SPACE, THE WATER
 CBELOW RESIDUAL IS 
 C JUST FILM WATER THAT IS BOUNDED BY VAN DER WAAL FORCE
 C    SEE RELATIVEK.SAGE FOR REFERENCE
-      SWSTAR=1.D0/AAPVNN
+      SWSTAR = 1.D0/AAPVNN
       RELK   =   DBLE (SQRT(SWSTAR)*                                     UNSAT........12400
      1                   (1.D0-(1.D0-SWSTAR**(1.D0/VNF))**(VNF))**2.D0)  UNSAT........12500
 C         LET RELK EQUALS TO ZERO IS TO REDUCE A BUG IN *.ELE OUTPUT
@@ -251,9 +251,6 @@ C         POSTPROCESSING PROGRAM DOES NOT UNDERSTAND
         ENDIF
         ENDIF   !PSIC AND PSICB
       ENDIF     !KREG
-
-
-
 
  1800 RETURN                                                             UNSAT........13600
 C                                                                        UNSAT........13700
