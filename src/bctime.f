@@ -311,7 +311,7 @@ C            AET=0.5*AET*RHOW0*(VAREA(IQP)+VAREA(IIQP))
           QIN(IABS(I))=QIN(IABS(I))+AET
           QIN(IABS(II))=QIN(IABS(II))-AET
           ENDIF
-                         
+            
           ENDIF                ! THE NEXT NODE SHOULD NOT BE SATURATED
         ENDIF                ! THE NEXT NODE SHOULD BE EXIST
 185      CONTINUE         !FINDOUT HORIZONTAL OR VERTICAL NODE

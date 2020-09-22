@@ -9,7 +9,7 @@ fl=15; % label font size
 
 %% coordinate transformation for accumulative evaporation
 % (T)ranslation for (T)ime (C)oordinate (day)
-ttc=1.8;
+ttc=1.5;
 % find out the the base accumulative evaporation rate before new zero time
 i=1;
 while (taetlab(i)-taetlab(1))<ttc
@@ -60,7 +60,7 @@ if f2(6)~=0
   qt=100;
   %A number from 0 through 100. Higher quality numbers result in higher video quality and larger file sizes
   h=figure;
-  set(gcf,'Units','normalized', 'WindowStyle','docked','OuterPosition',[0 0 1 1]);  % maximize the plotting figure
+  set(gcf,'Units','normalized', 'WindowStyle','normal','OuterPosition',[0 0 1 1]);  % maximize the plotting figure
   mov =  VideoWriter('linux.avi');% avifile('pvc1.avi','quality',qt,'compression','indeo5','fps',fs);
   mov.FrameRate = 5;mov.Quality=qt;
   open(mov);
