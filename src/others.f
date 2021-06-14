@@ -135,6 +135,17 @@ C     FIRST TIME COMING TO THIS SUBROUTINE
           CALL ZERO(USB,NN,0.0D0)
           CALL ZERO(QPB,NPBC,0.0D0)
           CALL ZERO(UPB,NPBC,0.0D0)
+		  
+C         ITE==0 SM IS OBTAINED FROM SALT CURVE
+C         ITE==1 SM IS INHERITED FROM *.ICS FILE       
+C         WARNING!! THIS SALT CURVE MAY BE CHANGED! THIS IS ONLY FOR 'SOLID'
+C         CONDITIONS!
+        IF (ITE.EQ.0) THEN
+          DO 1213 I =1,NN
+            SM(I)=(1.D0-POR(I))*RHOS*VOL(I)*CS1(I)*UVEC(I)
+1213      CONTINUE
+        END IF
+		
         DO 1 I=1,NN
           WMA(I)=VOL(I)*POR(I)*SW(I)*RHO(I)
           SMA(I)=WMA(I)*UM1(I)
@@ -177,16 +188,17 @@ C         ZERO-ORDER PRODUCTION/DECAY OF SOLUTE
         SMA(I)=SMA(I)+ESRV*PRODF0
 C         ZERO-ORDER PRODUCTION/DECAY OF ADSORBATE
         SMA(I)=SMA(I)+EPRSV*PRODS0
+          SM(I)=EPRSV*SL(I)*UVEC(I)
 		
-		IF (SMA(I).LT.0.D0) 	SMA(I)=UVM*ESRV
+C 		IF (SMA(I).LT.0.D0) 	SMA(I)=UVM*ESRV
 	
 
 C      CALCULATING SOLID SALT SM (KG) AND 
-          IF (UVEC(I).LE.UVM)THEN
-            SM(I)=0.0
-          ELSE
-            SM(I)=SMA(I)-UVM*ESRV
-          ENDIF
+C           IF (UVEC(I).LE.UVM)THEN
+C             SM(I)=0.0
+C           ELSE
+C             SM(I)=SMA(I)-UVM*ESRV
+C           ENDIF
 
 C         GAIN/LOSS OF FLUID THROUGH FLUID SOURCES AND SINKS
           QSB(I)=QSB(I)+QIN(I)*DELTP
