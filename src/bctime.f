@@ -230,7 +230,7 @@ C        AND/OR UIN(-I) HAVE BEEN SET BY SUBROUTINE BCTIME.              BCTIME.
       IBCSOP(IQP) = -1                                                   BCTIME.......18700
       IF ( PITER(IABS(I)).LT.PET) THEN                 ! SATURATION
       IF ( NDPT(IQP).EQ.1)THEN                 ! FIRST LAYER EVAPORATION
-      CALL SALTRESIST(RSC,UVM,UITER(IABS(I)),SM(IABS(I)),HAREA(IQP))
+      CALL SALTRESIST(RSC,MSC,UITER(IABS(I)),SM(IABS(I)),HAREA(IQP))
       CALL AEROSIST(RAVT,MAR)
       IF (IT.EQ.1517) THEN
        AAA=1.D0
